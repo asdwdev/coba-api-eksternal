@@ -1,20 +1,16 @@
 <?php
 header("Content-Type: application/json");
 
-$apiKey = "309e7b6a";
-$title = "batman";
-
-$url = "http://www.omdbapi.com/?apikey=$apiKey&s=" . urlencode($title);
+$url = "https://jsonplaceholder.typicode.com/posts?userId=1";
 
 $ch = curl_init();
 curl_setopt_array($ch, [
     CURLOPT_URL => $url,
-    CURLOPT_RETURNTRANSFER => true, // biar hasilnya gak langsung echo
+    CURLOPT_RETURNTRANSFER => true,
 ]);
 
 $response = curl_exec($ch);
-
-if ($response === false) {
+if ($response === null) {
     echo json_encode(["error" => curl_error($ch)]);
     exit;
 }
